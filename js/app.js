@@ -1,6 +1,6 @@
 var cats=[
     {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
-    {name: "Chewie", image: "images/chewie_cat.png", click_count: 0}
+    {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0}
 ];
 var selectCat = 0;
 var catListElement = document.getElementById("cat-list");
@@ -8,11 +8,13 @@ var catDisplayAreaElement = document.getElementById("cat-display-area");
 
 for (cat in cats) {
     var catLINode = document.createElement("LI");
-    var catNameNode = document.createTextNode(cats[cat].name)
+    var catNameNode = document.createTextNode(cats[cat].name);
 
     catLINode.addEventListener('click', (function(catCopy){
         return function() {
             var catDisplayNameNode = document.createElement("h1");
+            var catImageNode;
+            var catDisplayImageNode = document.createElement("img");
             selectCat = catCopy;
             console.log(cats[selectCat].name);
             // Display cat name
@@ -20,6 +22,8 @@ for (cat in cats) {
             catDisplayNameNode.appendChild(catNameNode);
             catDisplayAreaElement.appendChild(catDisplayNameNode);
             // Display cat image
+            catDisplayImageNode.setAttribute("src", cats[selectCat].image);
+            catDisplayAreaElement.appendChild(catDisplayImageNode);
 
         };
     })(cat));
