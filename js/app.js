@@ -4,14 +4,23 @@ var cats=[
 ];
 var selectCat = 0;
 var catListElement = document.getElementById("cat-list");
+var catDisplayAreaElement = document.getElementById("cat-display-area");
 
 for (cat in cats) {
     var catLINode = document.createElement("LI");
     var catNameNode = document.createTextNode(cats[cat].name)
+
     catLINode.addEventListener('click', (function(catCopy){
         return function() {
+            var catDisplayNameNode = document.createElement("h1");
             selectCat = catCopy;
             console.log(cats[selectCat].name);
+            // Display cat name
+            catNameNode = document.createTextNode(cats[selectCat].name)
+            catDisplayNameNode.appendChild(catNameNode);
+            catDisplayAreaElement.appendChild(catDisplayNameNode);
+            // Display cat image
+
         };
     })(cat));
 
