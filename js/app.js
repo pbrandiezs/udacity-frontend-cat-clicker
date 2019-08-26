@@ -2,15 +2,23 @@ var cats=[
     {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
     {name: "Chewie", image: "images/chewie_cat.png", click_count: 0}
 ];
-
+var selectCat = 0;
 var catListElement = document.getElementById("cat-list");
 
 for (cat in cats) {
     var catLINode = document.createElement("LI");
     var catNameNode = document.createTextNode(cats[cat].name)
+    catLINode.addEventListener('click', (function(catCopy){
+        return function() {
+            selectCat = catCopy;
+            console.log(cats[selectCat].name);
+        };
+    })(cat));
+
     catLINode.appendChild(catNameNode);
     document.getElementById("cat-list").appendChild(catLINode);
 };
+
 
 /*
 elem0.addEventListener('click', function(){
