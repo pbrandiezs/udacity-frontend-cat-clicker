@@ -13,8 +13,8 @@ for (cat in cats) {
     catLINode.addEventListener('click', (function(catCopy){
         return function() {
             var catDisplayNameNode = document.createElement("h1");
-            var catImageNode;
             var catDisplayImageNode = document.createElement("img");
+            var catDisplayScoreNode = document.createElement("h1");
             selectCat = catCopy;
             console.log(cats[selectCat].name);
             // Display cat name
@@ -24,7 +24,10 @@ for (cat in cats) {
             // Display cat image
             catDisplayImageNode.setAttribute("src", cats[selectCat].image);
             catDisplayAreaElement.appendChild(catDisplayImageNode);
-
+            // Display cat score
+            catDisplayScoreNodeText = document.createTextNode("Score: " + cats[selectCat].click_count);
+            catDisplayScoreNode.appendChild(catDisplayScoreNodeText);
+            catDisplayAreaElement.appendChild(catDisplayScoreNode);
         };
     })(cat));
 
