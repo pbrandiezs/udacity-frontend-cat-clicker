@@ -1,9 +1,14 @@
-var click_count=0;
-var elem = document.getElementById('cat');
+var click_count0 = 0;
+var click_count1 = 0;
+var elem0 = document.getElementById('cat0');
+var elem1 = document.getElementById('cat1');
 
-elem.addEventListener('click', function(){
-    //the element has been clicked... do stuff here
-    click_count++;
-    // console.log("Clicks " + click_count);
-    document.getElementById("clicks").innerHTML = click_count;
+elem0.addEventListener('click', function(){
+    click_count0++;
+    document.getElementById("clicks0").innerHTML = click_count0;
+}, false);
+
+elem1.addEventListener('click', function(){
+    click_count1++;
+    document.getElementById("clicks1").innerHTML = click_count1;
 }, false);
