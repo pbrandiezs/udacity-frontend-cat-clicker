@@ -1,6 +1,9 @@
 var cats=[
     {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
-    {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0}
+    {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0},
+    {name: "Snowball", image: "images/snowball.jpg", click_count: 0},
+    {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
+    {name: "Angry", image: "images/angry.jpg", click_count: 0}
 ];
 var selectCat = 0;
 var catListElement = document.getElementById("cat-list");
