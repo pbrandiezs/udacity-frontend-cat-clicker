@@ -14,15 +14,17 @@ for (cat in cats) {
         return function() {
             selectCat = catCopy;
             catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
-            catDisplayAreaElement.innerHTML += "<img id='cat' src='" + cats[selectCat].image + "'>";
-            catDisplayAreaElement.innerHTML += "<h1>Score: " + cats[selectCat].click_count + "</h1>";
+            catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[selectCat].image + "'>";
+            catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[selectCat].click_count + "</h1>";
 
-            var catImageElement = document.getElementById("cat");
-            console.log(catImageElement);
+            var catImageElement = document.getElementById("catimg");
+            var catScoreElement = document.getElementById("score");
             catImageElement.addEventListener('click', (function(catCopy2){
-                selectCat2 = catCopy2;
-                console.log("Click!");
-                cats[selectCat2].click_count++;
+                return function() {
+                    selectCat2 = catCopy2;
+                    cats[selectCat2].click_count++;
+                    catScoreElement.textContent = "Score: " + cats[selectCat2].click_count;
+                };
             })(selectCat));
         };
     })(cat));
@@ -30,16 +32,3 @@ for (cat in cats) {
     catLINode.appendChild(catNameNode);
     document.getElementById("cat-list").appendChild(catLINode);
 };
-
-
-/*
-elem0.addEventListener('click', function(){
-    click_count0++;
-    document.getElementById("clicks0").innerHTML = click_count0;
-}, false);
-
-elem1.addEventListener('click', function(){
-    click_count1++;
-    document.getElementById("clicks1").innerHTML = click_count1;
-}, false);
-*/
