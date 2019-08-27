@@ -14,17 +14,16 @@ for (cat in cats) {
         return function() {
             selectCat = catCopy;
             catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
-            catDisplayAreaElement.innerHTML += "<img id='cat" + selectCat + "' src='" + cats[selectCat].image + "'>";
+            catDisplayAreaElement.innerHTML += "<img id='cat' src='" + cats[selectCat].image + "'>";
             catDisplayAreaElement.innerHTML += "<h1>Score: " + cats[selectCat].click_count + "</h1>";
 
-            var catImageElement = document.getElementById("cat" + selectCat);
-            catImageElement.addEventListener('click', function(){
+            var catImageElement = document.getElementById("cat");
+            console.log(catImageElement);
+            catImageElement.addEventListener('click', (function(catCopy2){
+                selectCat2 = catCopy2;
                 console.log("Click!");
-                cats[selectCat].click_count++;
-                catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
-                catDisplayAreaElement.innerHTML += "<img id='cat" + selectCat + "' src='" + cats[selectCat].image + "'>";
-                catDisplayAreaElement.innerHTML += "<h1>Score: " + cats[selectCat].click_count + "</h1>";
-            }, false);
+                cats[selectCat2].click_count++;
+            })(selectCat));
         };
     })(cat));
 
