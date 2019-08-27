@@ -12,22 +12,19 @@ for (cat in cats) {
 
     catLINode.addEventListener('click', (function(catCopy){
         return function() {
-            var catDisplayNameNode = document.createElement("h1");
-            var catDisplayImageNode = document.createElement("img");
-            var catDisplayScoreNode = document.createElement("h1");
             selectCat = catCopy;
-            console.log(cats[selectCat].name);
-            // Display cat name
-            catNameNode = document.createTextNode(cats[selectCat].name)
-            catDisplayNameNode.appendChild(catNameNode);
-            catDisplayAreaElement.appendChild(catDisplayNameNode);
-            // Display cat image
-            catDisplayImageNode.setAttribute("src", cats[selectCat].image);
-            catDisplayAreaElement.appendChild(catDisplayImageNode);
-            // Display cat score
-            catDisplayScoreNodeText = document.createTextNode("Score: " + cats[selectCat].click_count);
-            catDisplayScoreNode.appendChild(catDisplayScoreNodeText);
-            catDisplayAreaElement.appendChild(catDisplayScoreNode);
+            catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
+            catDisplayAreaElement.innerHTML += "<img id='cat" + selectCat + "' src='" + cats[selectCat].image + "'>";
+            catDisplayAreaElement.innerHTML += "<h1>Score: " + cats[selectCat].click_count + "</h1>";
+
+            var catImageElement = document.getElementById("cat" + selectCat);
+            catImageElement.addEventListener('click', function(){
+                console.log("Click!");
+                cats[selectCat].click_count++;
+                catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
+                catDisplayAreaElement.innerHTML += "<img id='cat" + selectCat + "' src='" + cats[selectCat].image + "'>";
+                catDisplayAreaElement.innerHTML += "<h1>Score: " + cats[selectCat].click_count + "</h1>";
+            }, false);
         };
     })(cat));
 
