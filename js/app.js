@@ -5,8 +5,6 @@ var cats=[
     {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
     {name: "Angry", image: "images/angry.jpg", click_count: 0}
 ];
-var selectCat = 0;
-var catListElement = document.getElementById("cat-list");
 var catDisplayAreaElement = document.getElementById("cat-display-area");
 
 for (cat in cats) {
