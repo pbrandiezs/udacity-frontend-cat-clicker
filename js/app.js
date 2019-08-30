@@ -13,7 +13,7 @@ for (cat in cats) {
     catLINode.addEventListener('click', (function(catCopy){
         return function() {
             var catDisplayAreaElement = document.getElementById("cat-display-area");
-            selectCat = catCopy;
+            var selectCat = catCopy;
             catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
             catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[selectCat].image + "'>";
             catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[selectCat].click_count + "</h1>";
