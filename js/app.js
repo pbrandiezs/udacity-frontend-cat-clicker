@@ -5,7 +5,6 @@ var cats=[
     {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
     {name: "Angry", image: "images/angry.jpg", click_count: 0}
 ];
-var catDisplayAreaElement = document.getElementById("cat-display-area");
 
 for (cat in cats) {
     var catLINode = document.createElement("LI");
@@ -13,6 +12,7 @@ for (cat in cats) {
 
     catLINode.addEventListener('click', (function(catCopy){
         return function() {
+            var catDisplayAreaElement = document.getElementById("cat-display-area");
             selectCat = catCopy;
             catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
             catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[selectCat].image + "'>";
