@@ -38,10 +38,10 @@ $(function() {
                 catLINode.addEventListener('click', (function(catCopy){
                     return function() {
                         var catDisplayAreaElement = document.getElementById("cat-display-area");
-                        var selectCat = catCopy;
-                        catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
-                        catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[selectCat].image + "'>";
-                        catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[selectCat].click_count + "</h1>";
+                        octopus.pickCat(catCopy);
+                        catDisplayAreaElement.innerHTML = "<h1>" + cats[data.targetCat].name + "</h1>";
+                        catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[data.targetCat].image + "'>";
+                        catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[data.targetCat].click_count + "</h1>";
 
                         var catImageElement = document.getElementById("catimg");
                         var catScoreElement = document.getElementById("score");
