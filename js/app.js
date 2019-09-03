@@ -1,40 +1,65 @@
 $(function() {
     var data = {
-        cats=[
-            {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
-            {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0},
-            {name: "Snowball", image: "images/snowball.jpg", click_count: 0},
-            {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
-            {name: "Angry", image: "images/angry.jpg", click_count: 0}
-        ],
-        targetCat = 0
+        cats: [],
+        targetCat: 0
     };
 
-    for (cat in cats) {
-        var catLINode = document.createElement("LI");
-        var catNameNode = document.createTextNode(cats[cat].name);
+    var octopus = {
+        init: function() {
+            view.init();
+        },
+        pickCat: function(theCat) {
+            data.targetCat = theCat;
+            view.render;
+        }
+    };
 
-        catLINode.addEventListener('click', (function(catCopy){
-            return function() {
-                var catDisplayAreaElement = document.getElementById("cat-display-area");
-                var selectCat = catCopy;
-                catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
-                catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[selectCat].image + "'>";
-                catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[selectCat].click_count + "</h1>";
+    var view = {
+        init: function() {
+            data.cats=[
+                {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
+                {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0},
+                {name: "Snowball", image: "images/snowball.jpg", click_count: 0},
+                {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
+                {name: "Angry", image: "images/angry.jpg", click_count: 0}
+            ];
+            data.targetCat = 0;
+            this.render();
+        },
 
-                var catImageElement = document.getElementById("catimg");
-                var catScoreElement = document.getElementById("score");
-                catImageElement.addEventListener('click', (function(catCopy2){
+        render: function() {
+            console.log("In view.render");
+            console.log(data.cats);
+            var cats = data.cats;
+            for (cat in cats) {
+                var catLINode = document.createElement("LI");
+                var catNameNode = document.createTextNode(cats[cat].name);
+
+                catLINode.addEventListener('click', (function(catCopy){
                     return function() {
-                        selectCat2 = catCopy2;
-                        cats[selectCat2].click_count++;
-                        catScoreElement.textContent = "Score: " + cats[selectCat2].click_count;
-                    };
-                })(selectCat));
-            };
-        })(cat));
+                        var catDisplayAreaElement = document.getElementById("cat-display-area");
+                        var selectCat = catCopy;
+                        catDisplayAreaElement.innerHTML = "<h1>" + cats[selectCat].name + "</h1>";
+                        catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[selectCat].image + "'>";
+                        catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[selectCat].click_count + "</h1>";
 
-        catLINode.appendChild(catNameNode);
-        document.getElementById("cat-list").appendChild(catLINode);
+                        var catImageElement = document.getElementById("catimg");
+                        var catScoreElement = document.getElementById("score");
+                        catImageElement.addEventListener('click', (function(catCopy2){
+                            return function() {
+                                selectCat2 = catCopy2;
+                                cats[selectCat2].click_count++;
+                                catScoreElement.textContent = "Score: " + cats[selectCat2].click_count;
+                            };
+                        })(data.targetCat));
+                    };
+                })(cat));
+
+                catLINode.appendChild(catNameNode);
+                document.getElementById("cat-list").appendChild(catLINode);
+            }
+        }
     };
+    octopus.init();
+
 }());
