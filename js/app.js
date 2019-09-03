@@ -34,6 +34,9 @@ $(function() {
         },
         getCatImage: function(theCat) {
             return data.cats[theCat].image;
+        },
+        getClickCount: function(theCat) {
+            return data.cats[theCat].click_count;
         }
     };
 
@@ -63,7 +66,7 @@ $(function() {
             var catDisplayAreaElement = document.getElementById("cat-display-area");
             catDisplayAreaElement.innerHTML = "<h1>" + octopus.getCatName(octopus.getTargetCat()) + "</h1>";
             catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + octopus.getCatImage(octopus.getTargetCat()) + "'>";
-            catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + data.cats[data.targetCat].click_count + "</h1>";
+            catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + octopus.getClickCount(octopus.getTargetCat()) + "</h1>";
             var catImageElement = document.getElementById("catimg");
             var catScoreElement = document.getElementById("score");
             catImageElement.addEventListener('click', (function(catCopy2){
