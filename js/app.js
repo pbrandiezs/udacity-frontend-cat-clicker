@@ -29,7 +29,7 @@ $(function() {
         getCatName: function(theCat) {
             return data.cats[theCat].name;
         },
-        getTargetCat: function(theCat) {
+        getTargetCat: function() {
             return data.targetCat;
         },
         getCatImage: function(theCat) {
@@ -72,9 +72,9 @@ $(function() {
             catImageElement.addEventListener('click', (function(catCopy2){
                 return function() {
                     octopus.incrementCat(catCopy2);
-                    catScoreElement.textContent = "Score: " + data.cats[catCopy2].click_count;
+                    catScoreElement.textContent = "Score: " + octopus.getClickCount(catCopy2);
                 };
-            })(data.targetCat));
+            })(octopus.getTargetCat()));
         }
     };
     octopus.init();
