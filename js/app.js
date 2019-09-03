@@ -31,34 +31,35 @@ $(function() {
         },
 
         render: function() {
-            console.log("In view.render");
-            console.log(data.cats);
             for (cat in data.cats) {
                 var catLINode = document.createElement("LI");
                 var catNameNode = document.createTextNode(data.cats[cat].name);
 
                 catLINode.addEventListener('click', (function(catCopy){
                     return function() {
-                        var catDisplayAreaElement = document.getElementById("cat-display-area");
                         octopus.pickCat(catCopy);
-                        catDisplayAreaElement.innerHTML = "<h1>" + data.cats[data.targetCat].name + "</h1>";
-                        catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + data.cats[data.targetCat].image + "'>";
-                        catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + data.cats[data.targetCat].click_count + "</h1>";
-
-                        var catImageElement = document.getElementById("catimg");
-                        var catScoreElement = document.getElementById("score");
-                        catImageElement.addEventListener('click', (function(catCopy2){
-                            return function() {
-                                octopus.incrementCat(catCopy2);
-                                catScoreElement.textContent = "Score: " + data.cats[catCopy2].click_count;
-                            };
-                        })(data.targetCat));
+                        view.renderCatImage();
                     };
                 })(cat));
-
                 catLINode.appendChild(catNameNode);
                 document.getElementById("cat-list").appendChild(catLINode);
             }
+        },
+
+        renderCatImage: function() {
+            var catDisplayAreaElement = document.getElementById("cat-display-area");
+            catDisplayAreaElement.innerHTML = "<h1>" + data.cats[data.targetCat].name + "</h1>";
+            catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + data.cats[data.targetCat].image + "'>";
+            catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + data.cats[data.targetCat].click_count + "</h1>";
+            var catImageElement = document.getElementById("catimg");
+            var catScoreElement = document.getElementById("score");
+            catImageElement.addEventListener('click', (function(catCopy2){
+                return function() {
+                    octopus.incrementCat(catCopy2);
+                    catScoreElement.textContent = "Score: " + data.cats[catCopy2].click_count;
+                };
+            })(data.targetCat));
+
         }
     };
     octopus.init();
