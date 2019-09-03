@@ -1,41 +1,41 @@
 $(function() {
-    var data = {
+    var model = {
         cats: [],
         targetCat: 0
     };
 
     var octopus = {
         init: function() {
-            data.cats=[
+            model.cats=[
                 {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
                 {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0},
                 {name: "Snowball", image: "images/snowball.jpg", click_count: 0},
                 {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
                 {name: "Angry", image: "images/angry.jpg", click_count: 0}
             ];
-            data.targetCat = 0;
+            model.targetCat = 0;
             view.init();
         },
         pickCat: function(theCat) {
-            data.targetCat = theCat;
+            model.targetCat = theCat;
         },
         incrementCat: function(theCat) {
-            data.cats[theCat].click_count++;
+            model.cats[theCat].click_count++;
         },
         getCats: function() {
-            return data.cats;
+            return model.cats;
         },
         getCatName: function(theCat) {
-            return data.cats[theCat].name;
+            return model.cats[theCat].name;
         },
         getTargetCat: function() {
-            return data.targetCat;
+            return model.targetCat;
         },
         getCatImage: function(theCat) {
-            return data.cats[theCat].image;
+            return model.cats[theCat].image;
         },
         getClickCount: function(theCat) {
-            return data.cats[theCat].click_count;
+            return model.cats[theCat].click_count;
         }
     };
 
