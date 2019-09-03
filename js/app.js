@@ -22,6 +22,9 @@ $(function() {
         },
         incrementCat: function(theCat) {
             data.cats[theCat].click_count++;
+        },
+        getCats: function() {
+            return data.cats;
         }
     };
 
@@ -32,7 +35,7 @@ $(function() {
         },
 
         render: function() {
-            for (cat in data.cats) {
+            for (cat in octopus.getCats()) {
                 var catLINode = document.createElement("LI");
                 var catNameNode = document.createTextNode(data.cats[cat].name);
 
