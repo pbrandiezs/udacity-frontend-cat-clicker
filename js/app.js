@@ -25,6 +25,9 @@ $(function() {
         },
         getCats: function() {
             return data.cats;
+        },
+        getCatName: function(theCat) {
+            return data.cats[theCat].name;
         }
     };
 
@@ -37,7 +40,7 @@ $(function() {
         render: function() {
             for (cat in octopus.getCats()) {
                 var catLINode = document.createElement("LI");
-                var catNameNode = document.createTextNode(data.cats[cat].name);
+                var catNameNode = document.createTextNode(octopus.getCatName(cat));
 
                 catLINode.addEventListener('click', (function(catCopy){
                     return function() {
