@@ -11,6 +11,9 @@ $(function() {
         pickCat: function(theCat) {
             data.targetCat = theCat;
             view.render;
+        },
+        incrementCat: function(theCat) {
+            data.cats[theCat].click_count++;
         }
     };
 
@@ -48,7 +51,7 @@ $(function() {
                         catImageElement.addEventListener('click', (function(catCopy2){
                             return function() {
                                 selectCat2 = catCopy2;
-                                cats[selectCat2].click_count++;
+                                octopus.incrementCat(catCopy2);
                                 catScoreElement.textContent = "Score: " + cats[selectCat2].click_count;
                             };
                         })(data.targetCat));
