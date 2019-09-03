@@ -18,7 +18,6 @@ $(function() {
         },
         pickCat: function(theCat) {
             data.targetCat = theCat;
-            view.render;
         },
         incrementCat: function(theCat) {
             data.cats[theCat].click_count++;
