@@ -3,9 +3,17 @@ body {
 }
 
 #cat-display-area {
-    width: 40%;
+    width: 100%;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+#cat-admin-button-area {
+    display: none;
+}
+
+#cat-admin-area {
+    display: none;
 }
