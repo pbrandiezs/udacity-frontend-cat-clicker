@@ -6,6 +6,14 @@ $(function() {
 
     var octopus = {
         init: function() {
+            data.cats=[
+                {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
+                {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0},
+                {name: "Snowball", image: "images/snowball.jpg", click_count: 0},
+                {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
+                {name: "Angry", image: "images/angry.jpg", click_count: 0}
+            ];
+            data.targetCat = 0;
             view.init();
         },
         pickCat: function(theCat) {
@@ -19,14 +27,7 @@ $(function() {
 
     var view = {
         init: function() {
-            data.cats=[
-                {name: "Xuxa", image: "images/xuxa_cat.png", click_count: 0},
-                {name: "Chewie", image: "images/chewie_cat.jpg", click_count: 0},
-                {name: "Snowball", image: "images/snowball.jpg", click_count: 0},
-                {name: "Sneaky", image: "images/sneaky.jpg", click_count: 0},
-                {name: "Angry", image: "images/angry.jpg", click_count: 0}
-            ];
-            data.targetCat = 0;
+            octopus.pickCat(0);
             this.render();
         },
 
@@ -59,7 +60,6 @@ $(function() {
                     catScoreElement.textContent = "Score: " + data.cats[catCopy2].click_count;
                 };
             })(data.targetCat));
-
         }
     };
     octopus.init();
