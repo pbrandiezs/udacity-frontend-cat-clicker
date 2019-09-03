@@ -50,9 +50,8 @@ $(function() {
                         var catScoreElement = document.getElementById("score");
                         catImageElement.addEventListener('click', (function(catCopy2){
                             return function() {
-                                selectCat2 = catCopy2;
                                 octopus.incrementCat(catCopy2);
-                                catScoreElement.textContent = "Score: " + cats[selectCat2].click_count;
+                                catScoreElement.textContent = "Score: " + cats[catCopy2].click_count;
                             };
                         })(data.targetCat));
                     };
