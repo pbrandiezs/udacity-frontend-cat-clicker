@@ -33,25 +33,24 @@ $(function() {
         render: function() {
             console.log("In view.render");
             console.log(data.cats);
-            var cats = data.cats;
-            for (cat in cats) {
+            for (cat in data.cats) {
                 var catLINode = document.createElement("LI");
-                var catNameNode = document.createTextNode(cats[cat].name);
+                var catNameNode = document.createTextNode(data.cats[cat].name);
 
                 catLINode.addEventListener('click', (function(catCopy){
                     return function() {
                         var catDisplayAreaElement = document.getElementById("cat-display-area");
                         octopus.pickCat(catCopy);
-                        catDisplayAreaElement.innerHTML = "<h1>" + cats[data.targetCat].name + "</h1>";
-                        catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + cats[data.targetCat].image + "'>";
-                        catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + cats[data.targetCat].click_count + "</h1>";
+                        catDisplayAreaElement.innerHTML = "<h1>" + data.cats[data.targetCat].name + "</h1>";
+                        catDisplayAreaElement.innerHTML += "<img id='catimg' src='" + data.cats[data.targetCat].image + "'>";
+                        catDisplayAreaElement.innerHTML += "<h1 id='score'>Score: " + data.cats[data.targetCat].click_count + "</h1>";
 
                         var catImageElement = document.getElementById("catimg");
                         var catScoreElement = document.getElementById("score");
                         catImageElement.addEventListener('click', (function(catCopy2){
                             return function() {
                                 octopus.incrementCat(catCopy2);
-                                catScoreElement.textContent = "Score: " + cats[catCopy2].click_count;
+                                catScoreElement.textContent = "Score: " + data.cats[catCopy2].click_count;
                             };
                         })(data.targetCat));
                     };
