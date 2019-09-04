@@ -44,6 +44,9 @@ $(function() {
         },
         disableAdmin: function() {
             model.admin = false;
+        },
+        saveAdminEntries: function(name, ImgURL, Clicks) {
+            console.log("In saveAdminEntries");
         }
     };
 
@@ -91,14 +94,23 @@ $(function() {
                     octopus.enableAdmin();
                     console.log("Admin enabled!")
                     adminAreaElement.style.display = "inline";
-                    cancelButtonElement = document.getElementById("form-cancel");
-                    cancelButtonElement.addEventListener('click', (function(){
-                        return function() {
-                            octopus.disableAdmin();
-                            console.log("Admin disabled!");
-                            adminAreaElement.style.display = "none";
-                        };
-                    })());
+
+                };
+            })());
+            cancelButtonElement = document.getElementById("form-cancel");
+            cancelButtonElement.addEventListener('click', (function(){
+                return function() {
+                    octopus.disableAdmin();
+                    console.log("Admin disabled!");
+                    adminAreaElement.style.display = "none";
+                };
+            })());
+            saveButtonElement = document.getElementById("form-save");
+            saveButtonElement.addEventListener('click', (function(){
+                return function() {
+                    octopus.saveAdminEntries("name", "img", "clicks");
+                    console.log("Save Admin Entries!");
+                    adminAreaElement.style.display = "none";
                 };
             })());
         }
