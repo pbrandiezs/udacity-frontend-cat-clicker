@@ -85,6 +85,10 @@ $(function() {
                     catScoreElement.textContent = "Score: " + octopus.getClickCount(catCopy2);
                 };
             })(octopus.getTargetCat()));
+            //Fill Admin form
+            document.getElementById("form-name").value = octopus.getCatName(octopus.getTargetCat());
+            document.getElementById("form-imgUrl").value = octopus.getCatImage(octopus.getTargetCat());
+            document.getElementById("form-clicks").value = octopus.getClickCount(octopus.getTargetCat());
             //Display Admin button
             adminButtonElement = document.getElementById("cat-admin-button-area");
             adminAreaElement = document.getElementById("cat-admin-area");
@@ -97,6 +101,7 @@ $(function() {
 
                 };
             })());
+            //Cancel button
             cancelButtonElement = document.getElementById("form-cancel");
             cancelButtonElement.addEventListener('click', (function(){
                 return function() {
@@ -105,6 +110,7 @@ $(function() {
                     adminAreaElement.style.display = "none";
                 };
             })());
+            //Save button
             saveButtonElement = document.getElementById("form-save");
             saveButtonElement.addEventListener('click', (function(){
                 return function() {
