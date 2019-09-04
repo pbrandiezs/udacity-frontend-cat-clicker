@@ -74,6 +74,8 @@ $(function() {
                     catScoreElement.textContent = "Score: " + octopus.getClickCount(catCopy2);
                 };
             })(octopus.getTargetCat()));
+            //Display Admin button
+            document.getElementById("cat-admin-button-area").style.display = "inline";
         }
     };
     octopus.init();
