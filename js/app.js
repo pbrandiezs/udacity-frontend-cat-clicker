@@ -41,6 +41,9 @@ $(function() {
         },
         enableAdmin: function() {
             model.admin = true;
+        },
+        disableAdmin: function() {
+            model.admin = false;
         }
     };
 
@@ -88,6 +91,14 @@ $(function() {
                     octopus.enableAdmin();
                     console.log("Admin enabled!")
                     adminAreaElement.style.display = "inline";
+                    cancelButtonElement = document.getElementById("form-cancel");
+                    cancelButtonElement.addEventListener('click', (function(){
+                        return function() {
+                            octopus.disableAdmin();
+                            console.log("Admin disabled!");
+                            adminAreaElement.style.display = "none";
+                        };
+                    })());
                 };
             })());
         }
