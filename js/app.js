@@ -1,7 +1,8 @@
 $(function() {
     var model = {
         cats: [],
-        targetCat: 0
+        targetCat: 0,
+        admin: false
     };
 
     var octopus = {
@@ -14,6 +15,7 @@ $(function() {
                 {name: "Angry", image: "images/angry.jpg", click_count: 0}
             ];
             model.targetCat = 0;
+            model.admin = false;
             view.init();
         },
         pickCat: function(theCat) {
@@ -36,6 +38,9 @@ $(function() {
         },
         getClickCount: function(theCat) {
             return model.cats[theCat].click_count;
+        },
+        enableAdmin: function() {
+            model.admin = true;
         }
     };
 
@@ -75,7 +80,14 @@ $(function() {
                 };
             })(octopus.getTargetCat()));
             //Display Admin button
-            document.getElementById("cat-admin-button-area").style.display = "inline";
+            adminButtonElement = document.getElementById("cat-admin-button-area");
+            adminButtonElement.style.display = "inline";
+            adminButtonElement.addEventListener('click', (function(){
+                return function() {
+                    octopus.enableAdmin();
+                    console.log("Admin enabled!")
+                };
+            })());
         }
     };
     octopus.init();
