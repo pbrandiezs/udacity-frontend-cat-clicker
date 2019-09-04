@@ -45,8 +45,10 @@ $(function() {
         disableAdmin: function() {
             model.admin = false;
         },
-        saveAdminEntries: function(name, ImgURL, Clicks) {
-            console.log("In saveAdminEntries");
+        saveAdminEntries: function(theCat, name, ImgURL, Clicks) {
+            model.cats[theCat].name = name;
+            model.cats[theCat].image = ImgURL;
+            model.cats[theCat].click_count = Clicks;
         }
     };
 
@@ -54,6 +56,36 @@ $(function() {
         init: function() {
             octopus.pickCat(0);
             this.render();
+            //Admin button
+            adminButtonElement = document.getElementById("cat-admin-button-area");
+            adminAreaElement = document.getElementById("cat-admin-area");
+            adminButtonElement.addEventListener('click', (function(){
+                return function() {
+                    octopus.enableAdmin();
+                    adminAreaElement.style.display = "inline";
+
+                };
+            })());
+            //Cancel button
+            cancelButtonElement = document.getElementById("form-cancel");
+            cancelButtonElement.addEventListener('click', (function(){
+                return function() {
+                    octopus.disableAdmin();
+                    adminAreaElement.style.display = "none";
+                };
+            })());
+            //Save button
+            saveButtonElement = document.getElementById("form-save");
+            saveButtonElement.addEventListener('click', (function(){
+                return function() {
+                    var saveName = document.getElementById("form-name").value;
+                    var saveImg = document.getElementById("form-imgUrl").value;
+                    var saveClicks = document.getElementById("form-clicks").value;
+                    octopus.saveAdminEntries(octopus.getTargetCat(), saveName, saveImg, saveClicks);
+                    adminAreaElement.style.display = "none";
+                    view.renderCatImage();
+                };
+            })());
         },
 
         render: function() {
@@ -89,36 +121,9 @@ $(function() {
             document.getElementById("form-name").value = octopus.getCatName(octopus.getTargetCat());
             document.getElementById("form-imgUrl").value = octopus.getCatImage(octopus.getTargetCat());
             document.getElementById("form-clicks").value = octopus.getClickCount(octopus.getTargetCat());
-            //Display Admin button
-            adminButtonElement = document.getElementById("cat-admin-button-area");
-            adminAreaElement = document.getElementById("cat-admin-area");
-            adminButtonElement.style.display = "inline";
-            adminButtonElement.addEventListener('click', (function(){
-                return function() {
-                    octopus.enableAdmin();
-                    console.log("Admin enabled!")
-                    adminAreaElement.style.display = "inline";
 
-                };
-            })());
-            //Cancel button
-            cancelButtonElement = document.getElementById("form-cancel");
-            cancelButtonElement.addEventListener('click', (function(){
-                return function() {
-                    octopus.disableAdmin();
-                    console.log("Admin disabled!");
-                    adminAreaElement.style.display = "none";
-                };
-            })());
-            //Save button
-            saveButtonElement = document.getElementById("form-save");
-            saveButtonElement.addEventListener('click', (function(){
-                return function() {
-                    octopus.saveAdminEntries("name", "img", "clicks");
-                    console.log("Save Admin Entries!");
-                    adminAreaElement.style.display = "none";
-                };
-            })());
+            //Display Admin button
+            adminButtonElement.style.display = "inline";
         }
     };
     octopus.init();
