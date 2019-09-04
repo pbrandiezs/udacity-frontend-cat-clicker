@@ -81,11 +81,13 @@ $(function() {
             })(octopus.getTargetCat()));
             //Display Admin button
             adminButtonElement = document.getElementById("cat-admin-button-area");
+            adminAreaElement = document.getElementById("cat-admin-area");
             adminButtonElement.style.display = "inline";
             adminButtonElement.addEventListener('click', (function(){
                 return function() {
                     octopus.enableAdmin();
                     console.log("Admin enabled!")
+                    adminAreaElement.style.display = "inline";
                 };
             })());
         }
